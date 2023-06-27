@@ -1,0 +1,8 @@
+{
+  "name": "resto-Front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "d1dc512b"
+}
