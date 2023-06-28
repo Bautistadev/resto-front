@@ -10,4 +10,86 @@
       <ion-title size="large">Empleados</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="container-fluid" style="margin-top: 20px;">
+    <ion-accordion-group>
+      <ion-accordion value="Nuevo">
+        <ion-item slot="header" color="primary">
+          <ion-label>Nuevo empleado</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+
+          <div class="container-fluid">
+            <div class="row">
+
+              <div class="col-sm-4" style="margin-top: 10px;">
+                <ion-input label="Nombre de usuario" label-placement="floating" fill="solid" placeholder="Enter text"></ion-input>
+              </div>
+              <div class="col-sm-4" style="margin-top: 10px;">
+                <ion-input label="Nombre" label-placement="floating" fill="solid" placeholder="Enter text"></ion-input>
+              </div>
+              <div class="col-sm-4" style="margin-top: 10px;">
+                <ion-input label="Apellido" label-placement="floating" fill="solid" placeholder="Enter text"></ion-input>
+              </div>
+              <div class="col-sm-4" style="margin-top: 10px;">
+
+                <ion-input label="Dni" label-placement="floating" fill="solid" placeholder="Enter text"></ion-input>
+              </div>
+              <div class="col-sm-2" style="margin-top: 10px;">
+                <ion-input label="Password" label-placement="floating" fill="solid" placeholder="Enter text"></ion-input>
+              </div>
+              <div class="col-sm-2" style="margin-top: 10px;">
+                <ion-input label="Confirm password" label-placement="floating" fill="solid" placeholder="Enter text"></ion-input>
+              </div>
+
+              <div class="col-sm-4" style="margin-top: 10px;">
+                <ion-list>
+                  <ion-item>
+                    <ion-select aria-label="rols" interface="popover" placeholder="Select fruit">
+                      <ion-select-option value="1">ADMIN</ion-select-option>
+                      <ion-select-option value="2">USER</ion-select-option>
+
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+              </div>
+
+              <div class="col-sm-12" style="margin-top: 10px;">
+                <ion-button expand="block">Cargar</ion-button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
+
+  <div class="container-fluid" style="margin-top: 20px;">
+    <table class="table" style="text-align: center;">
+      <thead class="bg-primary">
+        <tr>
+          <th>Usuario</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Documento</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr *ngFor="let item of users">
+            <td>{{ item.userName }}</td>
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.apellido }}</td>
+            <td>{{ item.dni }}</td>
+            <td>{{ item.rol.rol }}</td>
+            <td><button class="btn btn-success">Info</button><button class="btn btn-warning">Modificar</button> <button class="btn btn-danger">Eliminar</button></td>
+          </tr>
+
+      </tbody>
+    </table>
+  </div>
 </ion-content>
