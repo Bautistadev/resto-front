@@ -1,6 +1,27 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>mesas</ion-title>
+  <ion-toolbar color="primary">
+    <div class="container-fluid" style="text-align:center;">
+      <div class="row">
+        <div class="col-sm-2">
+          <ion-button (click)="redirigir('empleados')" class="form-control" color="primary" style="display: inline-block;margin: 5px;">Empleados</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control" (click)="redirigir('mesas')"color="primary">Mesas</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control" color="primary">Pizzas</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control" color="primary">Bebidas</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control" color="primary">Ordenes</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control" color="primary">Salir</ion-button>
+        </div>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -10,4 +31,44 @@
       <ion-title size="large">mesas</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div class="container-fluid" style="margin-top: 20px;">
+  <ion-accordion-group>
+    <ion-accordion value="Nuevo">
+      <ion-item slot="header" color="primary">
+        <ion-label>Nueva Mesa</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <form [formGroup]="formularioNewTable">
+        <div class="container-fluid">
+          <div class="row">
+              <div class="col-sm-10" style="margin-top: 10px;">
+                <ion-list>
+                  <ion-item>
+                    <ion-select  *ngFor="let item of users" label="Seleccionar"
+                    [interfaceOptions]="customActionSheetOptions"
+                    interface="action-sheet"
+                    placeholder="Select One">
+                      <ion-select-option>{{ item.userName }}</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+              </div>
+              <div class="col-sm-2" style="margin-top: 10px;">
+                <ion-button (click)="generateCode()">Generar</ion-button>
+              </div>
+
+              <div id="QRContainer" class="container-fluid" style="text-align: center;">
+                <qr-code value="{{qrCode}}" size="500" errorCorrectionLevel="M"></qr-code>
+              </div>
+            <div class="col-sm-12" style="margin-top: 10px;">
+              <ion-button expand="block" >Cargar</ion-button>
+            </div>
+
+          </div>
+        </div>
+      </form>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+</div>
 </ion-content>

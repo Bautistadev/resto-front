@@ -1,6 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title>inicio</ion-title>
+    <div class="container-fluid" style="text-align:center;">
+      <div class="row">
+        <div class="col-sm-2">
+          <ion-button (click)="redirigir('empleados')"class="form-control" color="primary" style="display: inline-block;margin: 5px;">Empleados</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control"(click)="redirigir('mesas')" color="primary">Messas</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control" color="primary">Pizzas</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control" color="primary">Bebidas</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control" color="primary">Ordenes</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control" color="primary">Salir</ion-button>
+        </div>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -39,7 +60,7 @@
           <ion-card-content>
             Here's a small text description for the card content. Nothing more, nothing less.
           </ion-card-content>
-          <ion-button color="primary">Ir</ion-button>
+          <ion-button color="primary" (click)="redirigir('mesas')">Ir</ion-button>
         </ion-card>
       </ion-col>
       <ion-col>

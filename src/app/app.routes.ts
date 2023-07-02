@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { SessionNotActivateGuard } from './session-not-activate.guard';
 import { SessionActivateGuard } from './session-activate.guard';
 
+
 export const routes: Routes = [
 
   {
@@ -26,12 +27,16 @@ export const routes: Routes = [
   },
   {
     path: 'mesas',
-    loadComponent: () => import('./mesas/mesas.page').then( m => m.MesasPage),
+    loadChildren: () => import('./mesas/mesas.module').then( m => m.MesasPageModule),
     canActivate:[SessionActivateGuard]
   },
   {
     path: 'ordenes',
     loadComponent: () => import('./ordenes/ordenes.page').then( m => m.OrdenesPage),
     canActivate:[SessionActivateGuard]
+  },
+  {
+    path: 'marcas',
+    loadComponent: () => import('./marcas/marcas.page').then( m => m.MarcasPage)
   },
 ];
