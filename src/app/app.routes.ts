@@ -36,7 +36,8 @@ export const routes: Routes = [
     canActivate:[SessionActivateGuard]
   },
   {
-    path: 'marcas',
-    loadComponent: () => import('./marcas/marcas.page').then( m => m.MarcasPage)
+    path: 'pizzas',
+    loadChildren: () => import('./pizzas/pizzas.module').then( m => m.PizzasPageModule)
   },
+
 ];

@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { MesasPage } from './mesas.page';
-import { MesasPageRoutingModule } from './Mesas-Routing.module';
+import { PizzasPage } from './pizzas.page';
+import { PizzasPageRoutingModule } from './Pizzas-Routing.module';
 import {QrCodeModule} from 'ng-qrcode'
-
-
+import {EditorModule} from '@tinymce/tinymce-angular'
 
 
 @NgModule({
@@ -14,10 +13,11 @@ import {QrCodeModule} from 'ng-qrcode'
     CommonModule,
     FormsModule,
     IonicModule,
-    MesasPageRoutingModule,MesasPage,
+    PizzasPageRoutingModule,PizzasPage,
     QrCodeModule,
+    EditorModule
 
   ],
 
 })
-export class MesasPageModule {}
+export class PizzasPageModule {}

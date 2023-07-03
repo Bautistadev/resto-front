@@ -2,6 +2,9 @@
   <ion-toolbar color="primary">
     <div class="container-fluid" style="text-align:center;">
       <div class="row">
+        <div class="col-sm-1">
+          <ion-button (click)="redirigir('inicio')" class="form-control" color="primary" style="display: inline-block;margin: 5px;">Inicio</ion-button>
+        </div>
         <div class="col-sm-2">
           <ion-button (click)="redirigir('empleados')" class="form-control" color="primary" style="display: inline-block;margin: 5px;">Empleados</ion-button>
         </div>
@@ -9,7 +12,7 @@
           <ion-button class="form-control" (click)="redirigir('mesas')"color="primary">Messas</ion-button>
         </div>
         <div class="col-sm-2">
-          <ion-button class="form-control" color="primary">Pizzas</ion-button>
+          <ion-button class="form-control" (click)="redirigir('pizzas')" color="primary">Pizzas</ion-button>
         </div>
         <div class="col-sm-2">
           <ion-button class="form-control" color="primary">Bebidas</ion-button>
@@ -17,7 +20,7 @@
         <div class="col-sm-2">
           <ion-button class="form-control" color="primary">Ordenes</ion-button>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
           <ion-button class="form-control" color="primary">Salir</ion-button>
         </div>
       </div>
@@ -44,7 +47,7 @@
             <div class="row">
 
                 <div class="col-sm-4" style="margin-top: 10px;">
-                  <ion-input formControlName="userName" label="Nombre de usuario" label-placement="floating" fill="solid" placeholder="Enter text" required></ion-input>
+                  <ion-input  label="Nombre de usuario" label-placement="floating" fill="solid" placeholder="Enter text" required></ion-input>
                 </div>
                 <div class="col-sm-4" style="margin-top: 10px;">
                   <ion-input formControlName="nombre" label="Nombre" label-placement="floating" fill="solid" placeholder="Enter text" required></ion-input>

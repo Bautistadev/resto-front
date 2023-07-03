@@ -31,9 +31,6 @@ export class EmpleadosPage implements OnInit {
   selectedUser:any;
   isModalUpdateOpen = false;
   crudOperation:string | undefined;
-  setOpenAlert(status:boolean){
-    this.isAlertOpen = status;
-  }
 
 
 
@@ -48,7 +45,6 @@ export class EmpleadosPage implements OnInit {
       employedData.rol = {id:employedData.rol,rol:"ROLE_USER"}
     }
 
-    console.log(employedData)
     //GUARDAMOS AL NUEVO EMPLEADO
     await axios.post("http://localhost:8080/api/v1/Empleado/add",employedData,{
       headers: {
@@ -92,6 +88,10 @@ export class EmpleadosPage implements OnInit {
       formGroup.get('confirmPassword')?.setErrors(null);
     }
   }
+  setOpenAlert(status:boolean){
+    this.isAlertOpen = status;
+  }
+
 
    //Funcion que cambia el estado de la bandera
   setModalUpdateOpen(user:users,operation:string){
