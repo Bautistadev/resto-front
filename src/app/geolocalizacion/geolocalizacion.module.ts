@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { MesasPage } from './mesas.page';
-import { MesasPageRoutingModule } from './Mesas-Routing.module';
+import { GeolocalizacionPage } from './geolocalizacion.page';
+import { GeolocalizacionPageRoutingModule } from './Geolocalizacion-Routing.module';
 import {QrCodeModule} from 'ng-qrcode'
-import { BrowserModule } from '@angular/platform-browser';
 
-
+import * as L from 'leaflet';
 
 
 @NgModule({
@@ -15,11 +14,10 @@ import { BrowserModule } from '@angular/platform-browser';
     CommonModule,
     FormsModule,
     IonicModule,
-    MesasPageRoutingModule,MesasPage,
+    GeolocalizacionPageRoutingModule,GeolocalizacionPage,
     QrCodeModule,
-    BrowserModule
 
   ],
 
 })
-export class MesasPageModule {}
+export class GeolocalizacionPageModule {}

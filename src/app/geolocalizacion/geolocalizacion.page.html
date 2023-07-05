@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <div class="container-fluid" style="text-align:center;">
+      <div class="row">
+        <div class="col-sm-1">
+          <ion-button (click)="redirigir('inicio')" class="form-control" color="primary" style="display: inline-block;margin: 5px;">Inicio</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button (click)="redirigir('empleados')" class="form-control" color="primary" style="display: inline-block;margin: 5px;">Empleados</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control" (click)="redirigir('mesas')"color="primary">Mesas</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control" (click)="redirigir('pizzas')" color="primary">Pizzas</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control" (click)="redirigir('geolocalizacion')" color="primary">Geolocalizacion</ion-button>
+        </div>
+        <div class="col-sm-2">
+          <ion-button class="form-control" color="primary">Ordenes</ion-button>
+        </div>
+        <div class="col-sm-1">
+          <ion-button class="form-control" (click)="Logout()" color="primary">Salir</ion-button>
+        </div>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">geolocalizacion</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div style="margin-top: 30px;" id="map">
+
+  </div>
+</ion-content>

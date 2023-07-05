@@ -39,5 +39,9 @@ export const routes: Routes = [
     path: 'pizzas',
     loadChildren: () => import('./pizzas/pizzas.module').then( m => m.PizzasPageModule)
   },
+  {
+    path: 'geolocalizacion',
+    loadChildren: () => import('./geolocalizacion/geolocalizacion.module').then( m => m.GeolocalizacionPageModule)
+  },
 
 ];
