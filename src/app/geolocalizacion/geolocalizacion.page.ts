@@ -1,26 +1,96 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef,Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators,NgForm } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
 import * as L from 'leaflet';
 import { booleanPointInPolygon } from '@turf/turf';
+import axios from 'axios';
 
-
+interface vertice{
+  lat:number,
+  lng:number
+}
+interface Geolocalizacion{
+  id:number,
+  x1:number,
+  x2:number,
+  x3:number,
+  x4:number,
+  y1:number,
+  y2:number,
+  y3:number,
+  y4:number,
+}
 
 @Component({
   selector: 'app-geolocalizacion',
   templateUrl: './geolocalizacion.page.html',
   styleUrls: ['./geolocalizacion.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
 })
 
 export class GeolocalizacionPage implements OnInit {
 
   map!: L.Map;
   polygon!: L.Polygon;
+  polygonDB!:L.Polygon;
   vertices: L.LatLng[] = [];
+  verticesFront:vertice[]=[];
+  idGeo!:number;
+  nombre:string = "juan"
 
+//  dataForm!:Geolocalizacion;
+  private isMouseDown = false;
+
+
+  async retriveAll(){
+    var coordenadasDB = await axios.get("http://localhost:8080/api/v1/Geolocalizacion/retriveAll",{
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización
+      }
+    })
+
+    this.idGeo = coordenadasDB.data[0].id;
+    var verticesFrontDB=[
+      {lat:(coordenadasDB.data)[0].x1,lng:(coordenadasDB.data)[0].y1},
+      {lat:(coordenadasDB.data)[0].x2,lng:(coordenadasDB.data)[0].y2},
+      {lat:(coordenadasDB.data)[0].x3,lng:(coordenadasDB.data)[0].y3},
+      {lat:(coordenadasDB.data)[0].x4,lng:(coordenadasDB.data)[0].y4}];
+
+
+      this.polygonDB = L.polygon(verticesFrontDB, { color: "blue" }).addTo(this.map);
+      this.verticesFront = verticesFrontDB
+
+  }
+
+  async update(){
+
+    var verticesUpdate={
+      id:this.idGeo,
+      x1:this.verticesFront[0].lat,
+      x2:this.verticesFront[1].lat,
+      x3:this.verticesFront[2].lat,
+      x4:this.verticesFront[3].lat,
+      y1:this.verticesFront[0].lng,
+      y2:this.verticesFront[1].lng,
+      y3:this.verticesFront[2].lng,
+      y4:this.verticesFront[3].lng,
+    }
+    console.log(verticesUpdate)
+
+    await axios.put("http://localhost:8080/api/v1/Geolocalizacion/update",verticesUpdate,{
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización
+      }
+    }).then((e)=>{
+      this.clearPolygon(this.polygonDB)
+      this.clearPolygon(this.polygon)
+      this.retriveAll()
+    })
+  }
 
   initMap() {
     this.map = L.map('map').setView([-34.90379084201353, -57.92483031749725], 13);
@@ -40,14 +110,7 @@ export class GeolocalizacionPage implements OnInit {
       this.vertices.push(vertex);
 
       if(this.vertices.length == 4){
-
-
-        console.log('Coordenadas del vértice:',
-          this.vertices[0].lat,this.vertices[0].lng,
-          this.vertices[1].lat,this.vertices[1].lng,
-          this.vertices[2].lat,this.vertices[2].lng,
-          this.vertices[3].lat,this.vertices[3].lng
-        );
+        this.verticesFront = this.vertices
 
       }
 
@@ -55,26 +118,49 @@ export class GeolocalizacionPage implements OnInit {
         this.map.removeLayer(this.polygon);
       }
 
-      this.polygon = L.polygon(this.vertices, { color: 'red' }).addTo(this.map);
+      this.polygon = L.polygon(this.vertices, { color: "red" }).addTo(this.map);
+
     });
 
     this.map.on('contextmenu', () => {
-      this.clearPolygon();
+      this.clearPolygon(this.polygon);
+    });
+
+    this.map.on('mousedown', () => {
+      this.isMouseDown = true;
+      this.updateCursor();
+    });
+
+    this.map.on('mouseup', () => {
+      this.isMouseDown = false;
+      this.updateCursor();
+    });
+
+    this.map.on('mouseover', () => {
+      this.updateCursor();
+    });
+
+    this.map.on('mouseout', () => {
+      this.updateCursor();
     });
   }
 
-  obtenerEntero(numero:number) {
-    let entero = Math.floor(numero);
-    return entero;
+
+  updateCursor() {
+    if (this.isMouseDown) {
+      this.renderer.addClass(this.map.getContainer(), 'grabbing-cursor');
+      this.renderer.removeClass(this.map.getContainer(), 'map-cursor');
+    } else {
+      this.renderer.removeClass(this.map.getContainer(), 'grabbing-cursor');
+      this.renderer.addClass(this.map.getContainer(), 'map-cursor');
+    }
   }
 
-
-
-  clearPolygon() {
+  clearPolygon(polygon:any ) {
     this.vertices = [];
-
+    this.verticesFront=[{lat:0,lng:0},{lat:0,lng:0},{lat:0,lng:0},{lat:0,lng:0}];
     if (this.polygon) {
-      this.map.removeLayer(this.polygon);
+      this.map.removeLayer(polygon);
 
     }
   }
@@ -87,14 +173,17 @@ export class GeolocalizacionPage implements OnInit {
     this.navControl.navigateRoot(route)
   }
 
-  constructor(public navControl:NavController) {
+
+  constructor(public navControl:NavController,private renderer: Renderer2,public pb:FormBuilder) {
+    this.verticesFront.push({lat:0,lng:0},{lat:0,lng:0},{lat:0,lng:0},{lat:0,lng:0});
+
+    this.retriveAll()
 
 
    }
 
   ngOnInit() {
     this.initMap();
-
   }
 
 }

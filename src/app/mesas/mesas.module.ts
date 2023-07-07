@@ -6,10 +6,6 @@ import { MesasPage } from './mesas.page';
 import { MesasPageRoutingModule } from './Mesas-Routing.module';
 import {QrCodeModule} from 'ng-qrcode'
 
-
-
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +13,6 @@ import {QrCodeModule} from 'ng-qrcode'
     IonicModule,
     MesasPageRoutingModule,MesasPage,
     QrCodeModule,
-
 
   ],
 

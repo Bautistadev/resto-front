@@ -35,8 +35,45 @@
       <ion-title size="large">geolocalizacion</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div style="margin-top: 30px;height: 70%; width: 100%;" id="map"> </div>
+  <div class="container-fluid">
+    <form >
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-3" >
 
-  <div style="margin-top: 30px;" id="map">
+            <ion-input label="x1" [(ngModel)]="nombre" name="nombre"  label-placement="floating" fill="outline" placeholder="x1" value="{{verticesFront[0].lat}}" ></ion-input>
 
+        </div>
+        <div class="col-sm-3">
+          <ion-input label="x2"  label-placement="floating" fill="outline" placeholder="x2" value="{{verticesFront[1].lat}}" ></ion-input>
+        </div>
+        <div class="col-sm-3">
+          <ion-input label="x3"  label-placement="floating" fill="outline" placeholder="x3" value="{{verticesFront[2].lat}}" ></ion-input>
+        </div>
+        <div class="col-sm-3">
+          <ion-input label="x4" label-placement="floating" fill="outline" placeholder="x4" value="{{verticesFront[3].lat}}" ></ion-input>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-3">
+          <ion-input label="y1"  label-placement="floating" fill="outline" placeholder="y1" value="{{verticesFront[0].lng}}" ></ion-input>
+        </div>
+        <div class="col-sm-3">
+          <ion-input label="y2"  label-placement="floating" fill="outline" placeholder="y2" value="{{verticesFront[1].lng}}" ></ion-input>
+        </div>
+        <div class="col-sm-3">
+          <ion-input label="y3"  label-placement="floating" fill="outline" placeholder="y3" value="{{verticesFront[2].lng}}" ></ion-input>
+        </div>
+        <div class="col-sm-3">
+          <ion-input label="y4"  label-placement="floating" fill="outline" placeholder="y4" value="{{verticesFront[3].lng}}" ></ion-input>
+        </div>
+      </div>
+    </form>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-sm-12">
+        <input type="submit" (click)="update()" class="btn btn-primary form-control" value="Modificar">
+      </div>
+    </div>
   </div>
+
 </ion-content>

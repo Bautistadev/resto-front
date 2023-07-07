@@ -1,6 +1,15 @@
 ion-content {
   #map {
-    height: 50%;
-    width: 50%;
+    height: 70%;
+    width: 100%;
   }
+}
+.map-cursor {
+  cursor: auto !important;
+}
+
+
+
+.grabbing-cursor {
+  cursor: grabbing !important;
 }
