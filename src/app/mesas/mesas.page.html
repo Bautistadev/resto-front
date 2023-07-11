@@ -95,12 +95,12 @@
                 <td>{{ item.empleado.userName }}</td>
                 <td>
                   <div  class="wrapper">
-                    <div *ngIf="!item.estado" style="backgroundColor:red" class="ion-activatable ripple-parent circle">
-                      {{ item.estado}}
+                    <div *ngIf="!item.estado"style="backgroundColor:red"  class="ion-activatable ripple-parent circle">
+
                       <ion-ripple-effect type="unbounded"></ion-ripple-effect>
                     </div>
-                    <div *ngIf="item.estado" style="backgroundColor:green" class="ion-activatable ripple-parent circle">
-                      {{ item.estado}}
+                    <div *ngIf="item.estado"  style="backgroundColor:green"class="ion-activatable ripple-parent circle">
+
                       <ion-ripple-effect type="unbounded"></ion-ripple-effect>
                     </div>
                   </div>

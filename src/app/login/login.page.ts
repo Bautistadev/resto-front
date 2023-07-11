@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
     //TRAEMOS VALORES DEL FOMULARIO
     var sessionCredential = this.formularioLogin.value;
 
-    await axios.post('http://localhost:8080/security/login',{
+    await axios.post('http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/security/login',{
       userName:sessionCredential.usuario,
       password:sessionCredential.password
     }).then((res)=>{

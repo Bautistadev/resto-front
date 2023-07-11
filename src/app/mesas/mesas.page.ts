@@ -51,14 +51,14 @@ export class MesasPage implements OnInit {
   isButtonDisabled = true;
   crudOperation:string | undefined;
   isModalUpdateOpen:boolean = false;
-
+  foto!: File;
 
    redirigir(route:string){
     this.navControl.navigateRoot(route)
   }
 
   async retriveAllEmployed(){
-    var employed = await axios.get("http://localhost:8080/api/v1/Empleado/retiveAll",{
+    var employed = await axios.get("http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/api/v1/Empleado/retiveAll",{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización
@@ -70,7 +70,7 @@ export class MesasPage implements OnInit {
   }
 
   async retriveAllTable(){
-    var table = await axios.get("http://localhost:8080/api/v1/Mesa/retriveAll",{
+    var table = await axios.get("http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/api/v1/Mesa/retriveAll",{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización
@@ -94,7 +94,7 @@ export class MesasPage implements OnInit {
 
     console.log(newTable)
     if(newTable.token !==''){
-      await axios.post("http://localhost:8080/api/v1/Mesa/add",newTable,{
+      await axios.post("http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/api/v1/Mesa/add",newTable,{
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización
@@ -165,9 +165,9 @@ export class MesasPage implements OnInit {
 
     this.retriveAllTable()
 //
-  //  setInterval(()=>{
-    //  this.retriveAllTable()
-   // },5000)
+   setInterval(()=>{
+    this.retriveAllTable()
+   },5000)
 
 
 

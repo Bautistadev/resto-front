@@ -19,7 +19,7 @@ async canActivate(
 
       //SI LA SESSION ESTA GUARDADA, Y VALIDADA, NOS QUEDAMOS DONDE ESTAMOS
       var sessionToken = sessionStorage.getItem('sessionToken')
-      const response: AxiosResponse = await axios.post('http://localhost:8080/security/validateToken',sessionToken); // Cambia la URL por la correcta
+      const response: AxiosResponse = await axios.post('http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/security/validateToken',sessionToken); // Cambia la URL por la correcta
       return true
     } catch (error) {
 

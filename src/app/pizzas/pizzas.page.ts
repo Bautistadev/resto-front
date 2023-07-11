@@ -47,13 +47,17 @@ export class PizzasPage implements OnInit {
   pizzas:pizza[]=[];
   bebidas:bebida[]=[];
 
+
   async savePizza(){
+
+
     var pizzaData = this.formularioNewPizza.value
 
     pizzaData.categoria = {id:pizzaData.categoria};
 
-    console.log(pizzaData)
-    await axios.post("http://localhost:8080/api/v1/Plato/addPlato",pizzaData,{
+
+
+    await axios.post("http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/api/v1/Plato/addPlato",pizzaData,{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización
@@ -68,7 +72,7 @@ export class PizzasPage implements OnInit {
   }
 
   async retriveAllPizzas(){
-    var pizza = await axios.get("http://localhost:8080/api/v1/Plato/retriveAllPlato",{
+    var pizza = await axios.get("http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/api/v1/Plato/retriveAllPlato",{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización
@@ -78,7 +82,7 @@ export class PizzasPage implements OnInit {
   }
 
   async retriveAllBebidas(){
-    var bebida = await axios.get("http://localhost:8080/api/v1/Plato/retriveAllBebida",{
+    var bebida = await axios.get("http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/api/v1/Plato/retriveAllBebida",{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización
@@ -112,6 +116,7 @@ export class PizzasPage implements OnInit {
 
     })
    }
+
 
   ngOnInit() {
   }

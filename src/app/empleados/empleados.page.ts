@@ -34,10 +34,12 @@ export class EmpleadosPage implements OnInit {
 
 
 
+
   async saveEmployed(){
 
     var employedData = this.formularioNewEmployed.value;
 
+    employedData
     //TRANFORMAMOS EL ID PARA QUE SEA IGUAL A LA PROPORCIONADA POR LA INTERFACE USUARIO
     if(employedData.rol == 1){
       employedData.rol = {id:employedData.rol,rol:"ROLE_ADMIN"}
@@ -45,8 +47,10 @@ export class EmpleadosPage implements OnInit {
       employedData.rol = {id:employedData.rol,rol:"ROLE_USER"}
     }
 
+    console.log(employedData)
+
     //GUARDAMOS AL NUEVO EMPLEADO
-    await axios.post("http://localhost:8080/api/v1/Empleado/add",employedData,{
+    await axios.post("http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/api/v1/Empleado/add",{employedData,foto:null},{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización
@@ -66,7 +70,7 @@ export class EmpleadosPage implements OnInit {
     console.log(employedData)
   }
   async retriveAllEmployed(){
-    var employed = await axios.get("http://localhost:8080/api/v1/Empleado/retiveAll",{
+    var employed = await axios.get("http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/api/v1/Empleado/retiveAll",{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización
