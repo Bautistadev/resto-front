@@ -15,7 +15,7 @@ export class SessionNotActivateGuard implements CanActivate {
       try {
         //SI LA SESSION EXISTE Y ESTA VALIDADA, NSO EXPULSA DEL LOGIN Y NOS DIRIGE A LA SESSION
         var sessionToken = sessionStorage.getItem('sessionToken')
-        const response: AxiosResponse = await axios.post('http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/security/validateToken',sessionToken); // Cambia la URL por la correcta
+        const response: AxiosResponse = await axios.post('http://192.168.100.30:8080/resto-0.0.1-SNAPSHOT/security/validateToken',sessionToken); // Cambia la URL por la correcta
         this.navControl.navigateRoot('inicio')
         return false
       } catch (error) {

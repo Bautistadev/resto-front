@@ -45,7 +45,7 @@ export class GeolocalizacionPage implements OnInit {
 
 
   async retriveAll(){
-    var coordenadasDB = await axios.get("http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/api/v1/Geolocalizacion/retriveAll",{
+    var coordenadasDB = await axios.get("http://192.168.100.30:8080/resto-0.0.1-SNAPSHOT/api/v1/Geolocalizacion/retriveAll",{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización
@@ -80,7 +80,7 @@ export class GeolocalizacionPage implements OnInit {
     }
     console.log(verticesUpdate)
 
-    await axios.put("http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/api/v1/Geolocalizacion/update",verticesUpdate,{
+    await axios.put("http://192.168.100.30:8080/resto-0.0.1-SNAPSHOT/api/v1/Geolocalizacion/update",verticesUpdate,{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización

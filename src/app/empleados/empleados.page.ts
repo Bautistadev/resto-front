@@ -50,7 +50,7 @@ export class EmpleadosPage implements OnInit {
     console.log(employedData)
 
     //GUARDAMOS AL NUEVO EMPLEADO
-    await axios.post("http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/api/v1/Empleado/add",{employedData,foto:null},{
+    await axios.post("http://192.168.100.30:8080/resto-0.0.1-SNAPSHOT/api/v1/Empleado/add",{employedData,foto:null},{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización
@@ -70,7 +70,7 @@ export class EmpleadosPage implements OnInit {
     console.log(employedData)
   }
   async retriveAllEmployed(){
-    var employed = await axios.get("http://192.168.0.146:8080/resto-0.0.1-SNAPSHOT/api/v1/Empleado/retiveAll",{
+    var employed = await axios.get("http://192.168.100.30:8080/resto-0.0.1-SNAPSHOT/api/v1/Empleado/retiveAll",{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem("sessionToken")}`  // Ejemplo de encabezado de autorización
